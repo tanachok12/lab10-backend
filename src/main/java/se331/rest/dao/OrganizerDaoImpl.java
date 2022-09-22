@@ -23,5 +23,8 @@ public class OrganizerDaoImpl  implements OrganizerDao{
     public Page<Organizer> getOrganizer(Pageable pageRequest) {
         return organizerRepository.findAll(pageRequest);
     }
-
+@Override
+    public Optional<Organizer> findById(Long id){
+        return organizerRepository.findById(id);
 }
+ }
