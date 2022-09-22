@@ -4,17 +4,32 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationListener;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 import se331.rest.entity.Event;
+import se331.rest.entity.Organizer;
 import se331.rest.repository.EventRepository;
+import se331.rest.repository.OrganizerRepository;
 
 @Component
 public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
     @Autowired
     EventRepository eventRepository;
+    @Autowired
+    OrganizerRepository organizerRepository;
 
     @Override
+    @Transactional
     public void onApplicationEvent(ApplicationReadyEvent applicationReadyEvent) {
-        eventRepository.save(Event.builder()
+            Organizer org1,org2,org3;
+            org1 = organizerRepository.save(Organizer.builder()
+                            .name("CAMT").build());
+            org2 = organizerRepository.save(Organizer.builder()
+                            .name("CMU").build());
+            org3 = organizerRepository.save(Organizer.builder()
+                            .name("ChiangMai").build());
+            Event tempEvent;
+            tempEvent = eventRepository.save(Event.builder()
+
                 .category("Academic")
                 .title("Midterm Exam")
                 .description("A time for taking the exam")
@@ -23,6 +38,8 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
                 .time("3.00-4.00 pm.")
                 .petAllowed(false)
                 .build());
+            tempEvent.setOrganizer(org3);
+            org3.getOwnEvents().add(tempEvent);
         eventRepository.save(Event.builder()
                 .category("Academic")
                 .title("Commencement Day")
