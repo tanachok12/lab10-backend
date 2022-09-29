@@ -12,8 +12,6 @@ import se331.rest.entity.Event;
 import se331.rest.service.EventService;
 import se331.rest.util.LabMapper;
 
-import javax.annotation.PostConstruct;
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller

@@ -9,17 +9,18 @@ import se331.rest.dao.OrganizerDao;
 import se331.rest.entity.Organizer;
 
 import java.util.List;
-@Service
 
-public class OrganizerServiceIpml implements OrganizerService {
+@Service
+public class OrganizerServiceImpl implements OrganizerService {
     @Autowired
     OrganizerDao organizerDao;
     @Override
-    public List<Organizer> getAllOrganizer(){
-        return  organizerDao.getOrganizer(Pageable.unpaged()).getContent();
+    public List<Organizer> getAllOrganizer() {
+        return organizerDao.getOrganizer(Pageable.unpaged()).getContent();
     }
+
     @Override
-    public Page<Organizer> getOrganizer(Integer page, Integer pageSize){
+    public Page<Organizer> getOrganizer(Integer page, Integer pageSize) {
         return organizerDao.getOrganizer(PageRequest.of(page,pageSize));
     }
 }

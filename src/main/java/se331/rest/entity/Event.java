@@ -28,3 +28,5 @@ public class Event {
     @ManyToMany(mappedBy = "eventHistory")
     List<Participant> participants;
 }
+
+

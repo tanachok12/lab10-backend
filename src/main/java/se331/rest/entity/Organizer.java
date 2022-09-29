@@ -5,6 +5,7 @@ import lombok.*;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+
 @Data
 @Builder
 @Entity
@@ -12,8 +13,8 @@ import java.util.List;
 @AllArgsConstructor
 public class Organizer {
     @Id
-            @GeneratedValue(strategy = GenerationType.IDENTITY)
-            @EqualsAndHashCode.Exclude
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @EqualsAndHashCode.Exclude
     Long id;
     String name;
     @OneToMany(mappedBy = "organizer")

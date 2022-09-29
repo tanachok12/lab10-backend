@@ -3,13 +3,12 @@ package se331.rest.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import se331.rest.dao.EventDao;
 import se331.rest.dao.OrganizerDao;
 import se331.rest.entity.Event;
 import se331.rest.entity.Organizer;
 
-import java.util.List;
+import javax.transaction.Transactional;
 
 @Service
 public class EventServiceImpl implements EventService {
@@ -17,6 +16,7 @@ public class EventServiceImpl implements EventService {
     EventDao eventDao;
     @Autowired
     OrganizerDao organizerDao;
+
     @Override
     public Integer getEventSize() {
         return eventDao.getEventSize();
@@ -40,5 +40,7 @@ public class EventServiceImpl implements EventService {
         organizer.getOwnEvents().add(event);
         return eventDao.save(event);
     }
+
+
 }
 
